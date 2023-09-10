@@ -5,47 +5,87 @@
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
-body {
-  min-height: 100vh;
+.container {
+  height: 100vh;
+  width: 100%;
+  background-image: url(images/background.png);
+  background-position: center;
+  background-size: cover;
+  padding-left: 5%;
+  padding-right: 5%;
+  box-sizing: border-box;
+  position: relative;
 }
 
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
+.navbar {
   width: 100%;
-  padding: 5px 20px;
-  background: #dc661f;
+  height: 15vh;
+  margin: auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  z-index: 100;
 }
 
 .logo {
-  width: 80px;
-  height: 80px;
+  height: 100%;
+  cursor: pointer;
 }
 
-.navbar a {
-  position: relative;
-  font-size: 18px;
-  color: #f6f6e9;
+nav {
+  flex: 1;
+  padding-left: 60px;
+}
+
+nav ul li {
+  display: inline-block;
+  list-style: none;
+  margin: 0px 20px;
+}
+
+nav ul li a {
   text-decoration: none;
-  margin-left: 40px;
+  color: #1f4547;
 }
 
-.navbar a::before {
-  content: "";
+.content h1 {
+  font-size: 60px;
+  font-weight: 100;
+  margin-top: 24px;
+  margin-bottom: 10px;
+  color: #1f4547;
+}
+
+.content h2 {
+  font-size: 40px;
+  margin-bottom: 10px;
+  color: #1f4547;
+}
+
+.content p {
+  font-size: 20px;
+  color: #1f4547;
+}
+
+.content {
+  margin-left: 10%;
+  margin-top: 8%;
+}
+
+.content .btn {
+  display: inline-block;
+  background: linear-gradient(45deg, #1f4547, #e4fbed);
+  border-radius: 6px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: #fff;
+  box-shadow: 3px 8px 22px rgba(94, 28, 68, 0.15);
+  margin-top: 10px;
+  margin-left: 70px;
+}
+
+.feature-img {
+  height: 90%;
   position: absolute;
-  top: 100%;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: #f6f6e9;
-  transition: 0.3s;
-}
-
-.navbar a:hover::before {
-  width: 100%;
+  bottom: 0;
+  right: 10px;
 }
