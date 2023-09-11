@@ -13,8 +13,6 @@
   background-image: url(/images/background.png);
   background-position: center;
   background-size: cover;
-  padding-left: 5%;
-  padding-right: 5%;
   box-sizing: border-box;
   position: relative;
 }
@@ -29,12 +27,12 @@
 .logo {
   height: 100%;
   cursor: pointer;
-  margin-left: 50px;
+  margin-left: 5%;
 }
 
 nav {
   flex: 1;
-  padding-left: 60px;
+  padding-left: 2%;
 }
 
 nav ul li {
@@ -49,7 +47,23 @@ nav ul li a {
   font-weight: 700;
 }
 
+@media (max-width: 500px) {
+  nav ul li {
+    margin: 5%;
+  }
+
+  nav ul li a {
+    font-size: 100%;
+  }
+
+  .logo {
+    height: 70%;
+  }
+}
+
 .favorites {
   text-decoration: none;
   color: #1f4547;
+  display: inline-block;
+  margin-right: 8%;
 }
