@@ -10,9 +10,9 @@
 .container {
   height: 100vh;
   width: 100%;
-  background-image: url(/images/background.png);
   background-size: cover;
   position: relative;
+  background-image: url(/images/background.png);
 }
 
 .navbar {
@@ -85,21 +85,6 @@ nav ul li a {
   font-size: 20px;
   color: #1f4547;
 }
-
-/*
-.content .btn {
-  display: inline-block;
-  background: linear-gradient(45deg, #1f4547, #e4fbed);
-  border-radius: 6px;
-  padding: 10px 20px;
-  box-sizing: border-box;
-  text-decoration: none;
-  color: #fff;
-  box-shadow: 3px 8px 22px rgba(94, 28, 68, 0.15);
-  margin-top: 10px;
-  margin-left: 70px;
-}
-*/
 
 .col-2 {
   position: relative;
