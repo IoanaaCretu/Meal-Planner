@@ -90,8 +90,8 @@ p[data-width="wide"] {
 
 /* navigation */
 
-.logo {
-  width: 50%;
+.primary-header {
+  padding-top: 1.5rem;
 }
 
 .nav-wrapper {

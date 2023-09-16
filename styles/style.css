@@ -90,8 +90,8 @@ p[data-width="wide"] {
 
 /* navigation */
 
-.logo {
-  width: 50%;
+.primary-header {
+  padding-top: 1.5rem;
 }
 
 .nav-wrapper {
@@ -180,6 +180,119 @@ p[data-width="wide"] {
 
   .mobile-nav-toggle[aria-expanded="true"] {
     background-image: url(/images/icon-close.svg);
+  }
+}
+
+/* footer */
+
+.primary-footer {
+  background-color: var(--clr-accent-400);
+  padding-block: 1rem;
+}
+
+.primary-footer__wrapper {
+  display: grid;
+  gap: 2rem !important;
+  justify-content: center;
+  align-items: start;
+  grid-template-areas: "scroller" "nav" "social" "logo" "copyright";
+}
+
+.primary-footer__logo {
+  grid-area: logo;
+  /* margin-inline: auto; */
+}
+
+.primary-footer__scroller {
+  grid-area: scroller;
+
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.scroller {
+  color: var(--clr-primary-400);
+  text-decoration: none;
+}
+
+.scroller:is(:hover) {
+  color: var(--clr-accent-100);
+}
+
+.primary-footer__nav-wrapper {
+  grid-area: nav;
+  text-align: center;
+}
+
+.primary-footer__scroller {
+  grid-area: scroller;
+
+  display: flex;
+  gap: 1rem;
+}
+
+.primary-footer__copyright {
+  grid-area: copyright;
+  text-align: center;
+}
+
+@media (min-width: 47em) {
+  .primary-footer__wrapper {
+    grid-template-areas: "logo nav scroller" "social nav copyright";
+    grid-template-columns: min-content 1fr auto;
+  }
+
+  .primary-footer__copyright {
+    text-align: right;
+  }
+}
+
+@media (max-width: 47em) {
+  .primary-footer__wrapper > * {
+    margin-inline: auto;
+  }
+}
+
+/* footer navigation */
+
+.footer-nav a {
+  color: var(--clr-neutral-900);
+  font-weight: var(--fw-semi-bold);
+  text-decoration: none;
+}
+
+.footer-nav a:is(:hover, :focus) {
+  color: var(--clr-primary-400);
+}
+
+/* social list */
+
+.social-list {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.social-icon {
+  width: 3rem;
+  aspect-ratio: 1;
+  fill: var(--clr-neutral-900);
+}
+
+.social-list a:is(:hover, :focus) .social-icon {
+  fill: var(--clr-primary-400);
+}
+
+@media (min-width: 47em) {
+  .social-list {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .social-icon {
+    width: 2.5rem;
+    max-width: revert;
   }
 }
 
@@ -274,10 +387,6 @@ p[data-width="wide"] {
 }
 
 @media (max-width: 47em) {
-  .hero__image::before {
-    width: 40%;
-  }
-
   .hero__image {
     order: 1;
   }

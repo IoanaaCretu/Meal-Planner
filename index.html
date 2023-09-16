@@ -9,6 +9,10 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
   </head>
   <body>
     <header class="primary-header">
@@ -115,8 +119,54 @@
         </div>
       </section>
     </main>
-    <footer class="padding-block">
-      <!--have to decide what to include in teh footer-->
+    <footer class="primary-footer">
+      <div class="container">
+        <div class="primary-footer__wrapper">
+          <a class="primary-footer__logo" href="index.html"
+            ><img class="pink-logo" src="images/pink-logo.svg" alt="logo"
+          /></a>
+
+          <ul class="social-list" role="list" aria-label="Social links">
+            <li>
+              <a aria-label="github" href="https://github.com/IoanaaCretu">
+                <svg class="social-icon">
+                  <use xlink:href="images/social-icons.svg#icon-github"></use>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                aria-label="linkedin"
+                href="https://www.linkedin.com/in/ioana-cretu-a660a028b/"
+              >
+                <svg class="social-icon">
+                  <use xlink:href="images/social-icons.svg#icon-linkedin"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+          <div class="primary-footer__nav-wrapper">
+            <nav class="footer-nav">
+              <ul
+                class="flow"
+                style="--flow-spacer: 1em"
+                aria-label="Footer"
+                role="list"
+              >
+                <li><a href="#about">About</a></li>
+                <li><a href="create-plan.html">Create plan</a></li>
+                <li><a href="favorites.html">Favorites</a></li>
+              </ul>
+            </nav>
+          </div>
+          <a class="primary-footer__scroller scroller" href="#"
+            ><span class="material-symbols-outlined"> arrow_upward </span></a
+          >
+          <p class="primary-footer__copyright">
+            Copyright 2023. All Rights Reserved.
+          </p>
+        </div>
+      </div>
     </footer>
     <script>
       const primaryHeader = document.querySelector(".primary-header");
