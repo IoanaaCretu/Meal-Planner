@@ -88,15 +88,11 @@ p[data-width="wide"] {
   max-width: 47ch;
 }
 
+/* navigation */
+
 .logo {
   width: 50%;
 }
-
-/* navigation */
-
-/* .primary-header {
-  padding-top: 3rem;
-} */
 
 .nav-wrapper {
   display: flex;
