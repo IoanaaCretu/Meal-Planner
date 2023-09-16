@@ -89,14 +89,14 @@ p[data-width="wide"] {
 }
 
 .logo {
-  width: 20%;
+  width: 50%;
 }
 
 /* navigation */
 
-.primary-header {
+/* .primary-header {
   padding-top: 3rem;
-}
+} */
 
 .nav-wrapper {
   display: flex;
@@ -136,7 +136,7 @@ p[data-width="wide"] {
 
   .primary-navigation {
     display: none;
-    position: fixed;
+    position: absolute;
     padding: 2rem;
     inset: 8rem 1rem auto;
     max-width: 25rem;
@@ -166,7 +166,7 @@ p[data-width="wide"] {
 
   .mobile-nav-toggle {
     display: block;
-    position: fixed;
+    position: absolute;
     /* top: 1rem; */
     right: 0.875rem;
     cursor: pointer;
@@ -176,7 +176,7 @@ p[data-width="wide"] {
     width: 1.65rem;
     aspect-ratio: 1;
 
-    background-image: url(/images/icon-hamburger.svg);
+    background-image: url(/images/icon-open.svg);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -272,7 +272,7 @@ p[data-width="wide"] {
   max-height: 70vh;
   max-height: 70dvh;
   aspect-ratio: 1 / 1.3;
-  background-image: url(/images/blob.svg);
+  background-image: url(/images/bg-feature.svg);
   background-repeat: no-repeat;
   background-position: bottom left;
 }
@@ -294,7 +294,7 @@ p[data-width="wide"] {
 }
 
 .sales-points__blog::before {
-  content: url("/images/blob.svg");
+  content: url("/images/bg-feature.svg");
   zoom: 40%;
   position: absolute;
   z-index: -1;
