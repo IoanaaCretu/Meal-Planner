@@ -50,7 +50,7 @@
                 take care of the meal planning for you. It's time to unwind
                 while I handle the delicious details
               </p>
-              <button class="button">Get Started</button>
+              <button class="button js-button">Get Started</button>
             </div>
             <div class="hero__image">
               <img src="images/feature-img.svg" />
@@ -75,7 +75,7 @@
                 endeavor.
               </p>
             </div>
-            <div class="col-2">
+            <div>
               <ul role="list" class="numbered-items | flow">
                 <li>
                   <div class="flow" style="--flow-spacer: 1em">
@@ -180,6 +180,11 @@
           : navToggle.setAttribute("aria-expanded", true);
         primaryNav.toggleAttribute("data-visible");
         primaryHeader.toggleAttribute("data-overlay");
+      });
+
+      const getStartedButton = document.querySelector(".js-button");
+      getStartedButton.addEventListener("click", () => {
+        window.location.href = "step1.html";
       });
     </script>
   </body>
