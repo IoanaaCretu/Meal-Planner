@@ -13,30 +13,27 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
+    <script defer src="scripts/create-plan.js"></script>
   </head>
   <body>
     <main>
       <div class="container">
-        <div class="pink-container">
-          <div class="question">
-            <h4 class="fw-bold fs-700">How far ahead do you want to plan?</h4>
-          </div>
-          <div class="option-list">
-            <button class="answer | fw-semi-bold fs-700 border-none">
-              Just for today..
-            </button>
-            <button class="answer | fw-semi-bold fs-700 border-none">
-              The whole week
-            </button>
-          </div>
-          <div class="button">
-            <button class="continue-btn | fw-semi-bold fs-600 border-none">
-              Continue
-            </button>
-          </div>
-        </div>
         <div class="warning-message | hidden">
           <p class="fw-regular fs-600">Please select one option</p>
+        </div>
+        <div class="pink-container">
+          <div class="question">
+            <h4 class="js-question | fw-bold fs-700">
+              How far ahead do you want to plan?
+            </h4>
+          </div>
+          <div class="option-list">
+            <button class="answer">Just for today..</button>
+            <button class="answer">The whole week</button>
+          </div>
+          <div class="button">
+            <button class="continue-btn | fw-semi-bold fs-600">Continue</button>
+          </div>
         </div>
       </div>
     </main>

@@ -69,10 +69,11 @@ svg {
 
 .pink-container {
   background-color: var(--clr-accent-100);
-  border: 1px solid black;
+  /* border: 1px solid black; */
   border-radius: 30px;
   padding: 3rem 1rem;
   margin: 3rem 4rem 1rem 4rem;
+  box-shadow: 0 0 15px 2px;
 }
 
 /* question */
@@ -93,14 +94,23 @@ svg {
 .answer {
   cursor: pointer;
   color: hsl(13, 29%, 9%);
+  font-size: var(--fs-700);
+  font-weight: var(--fw-semi-bold);
   background-color: var(--clr-neutral-900);
+  border: none;
   border-radius: 50% 20% / 10% 40%;
   padding: 2rem;
   margin-left: 1rem;
 }
 
-.answer:hover,
+/* .answer:hover,
 .answer:focus-visible {
+  color: var(--clr-neutral-900);
+  background-color: hsla(12, 42%, 60%, 0.447);
+  border: 2px solid hsl(12, 42%, 60%);
+} */
+
+.selected-answer {
   color: var(--clr-neutral-900);
   background-color: hsla(12, 42%, 60%, 0.447);
   border: 2px solid hsl(12, 42%, 60%);
@@ -132,7 +142,7 @@ svg {
 .continue-btn {
   cursor: pointer;
   color: black;
-  border: 0;
+  border: none;
   border-radius: 100vmax;
   padding: 0.85em 2em;
   background-color: var(--clr-neutral-900);
@@ -286,10 +296,6 @@ svg {
 
 .fs-700 {
   font-size: var(--fs-700);
-}
-
-.border-none {
-  border: none;
 }
 
 .hidden {
