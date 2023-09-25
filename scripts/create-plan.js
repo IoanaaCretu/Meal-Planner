@@ -8,45 +8,46 @@ const warningMessage = document.querySelector(".warning-message");
 const userAnswers = { length: 0, list: false };
 let currentQuestionIndex = 0;
 
-// gets the selected button
+// function to check if a button is selected
 
-function getSelectedButton() {
+function isButtonSelected() {
   const selectedButton = answerButtonsElement.querySelector(".selected-answer");
   return !!selectedButton;
 }
 
-// get the selected answer text
+// function to get the selected answer text
+
 function getSelectedAnswer() {
   const selectedBtn = answerButtonsElement.querySelector(".selected-answer");
   return selectedBtn ? selectedBtn.innerText : null;
 }
-//what happens when i click continue
+
+// event listener for continue button
 
 continueButton.addEventListener("click", () => {
-  if (getSelectedButton()) {
-    //save the answer in a var and then push it in the array
+  if (isButtonSelected()) {
     const selectedAnswer = getSelectedAnswer();
-
-    if (selectedAnswer === "Just for today..") {
+    if (selectedAnswer === "Just for today...") {
       userAnswers.length = 1;
     } else if (selectedAnswer === "The whole week") {
       userAnswers.length = 7;
     }
 
-    if (selectedAnswer === "Sure, that would be helpful!") {
-      userAnswers.list = true;
-    } else {
-      userAnswers.list = false;
-    }
+    userAnswers.list =
+      selectedAnswer === "Sure, that would be helpful!" ? true : false;
 
     warningMessage.classList.add("hidden");
     displayNextQuestion();
   } else {
-    warningMessage.classList.remove("hidden");
+    currentQuestionIndex > 1
+      ? warningMessage.classList.add("hidden")
+      : warningMessage.classList.remove("hidden");
   }
+
+  console.log(userAnswers);
 });
 
-//what happens when clicking one of the options
+//event listener for answer buttons
 
 answerButtonsElement.addEventListener("click", (event) => {
   if (event.target && event.target.matches("button")) {
@@ -59,24 +60,23 @@ answerButtonsElement.addEventListener("click", (event) => {
   }
 });
 
-//displaying the next question
+// function to display the next question
 
 function displayNextQuestion() {
   resetState();
-  //if (currentQuestionIndex < questions.length) {
+
   showQuestion(questions[currentQuestionIndex]);
   currentQuestionIndex++;
-  //} else {
-  // alert("finish!");
-  //}
 }
 
-//setting the html for the next question
+// function to set HTML for the next question
 
 function showQuestion(question) {
   questionElement.innerText = question.question;
   if (question.subheading) {
     subheadingElement.innerText = question.subheading;
+
+    continueButton.innerText = question.buttonText;
   }
 
   if (question.customHtml) {
@@ -84,13 +84,19 @@ function showQuestion(question) {
     contentElement.innerHTML += question.customHtml;
     addScrollableItems();
   }
-  question.answers.forEach((answer) => {
-    const button = document.createElement("button");
-    button.innerText = answer;
-    button.classList.add("answer");
-    answerButtonsElement.appendChild(button);
-  });
+
+  if (question.answers && question.answers.length > 0) {
+    question.answers.forEach((answer) => {
+      const button = document.createElement("button");
+      button.innerText = answer;
+      button.classList.add("answer");
+      answerButtonsElement.appendChild(button);
+    });
+    continueButton.innerText = question.buttonText;
+  }
 }
+
+// function to add scrollable items
 
 function addScrollableItems() {
   const scrollableContainers = document.querySelectorAll(
@@ -114,7 +120,7 @@ function addScrollableItems() {
   });
 }
 
-//removing the previous buttons
+// function to reset the answer buttons
 
 function resetState() {
   while (answerButtonsElement.firstChild) {
@@ -127,6 +133,7 @@ const questions = [
     question:
       "Would you like me to create a list of ingredients you'll need for these meals?",
     answers: ["Sure, that would be helpful!", "I'll handle that on my own!."],
+    buttonText: "Let's explore some recipes",
   },
 
   {
@@ -134,11 +141,12 @@ const questions = [
     subheading:
       "If there are any recipes you're not in the mood for right now, simply click on the upper right corner, and I'll provide another option.",
     customHtml: `
-      <div class="grid-container ">
-        <div class="scrollable-container"></div>
-        <div class="scrollable-container"></div>
-        <div class="scrollable-container"></div>
-      </div>
+    <div class="grid-container ">
+    <div class="scrollable-container"></div>
+    <div class="scrollable-container"></div>
+    <div class="scrollable-container"></div>
+    </div>
     `,
+    buttonText: "Continue",
   },
 ];

@@ -62,13 +62,13 @@ svg {
   background-color: var(--clr-accent-100);
   border-radius: var(--border-radius);
   padding: 3rem 1rem;
-  margin: 3rem 4rem 1rem 4rem;
+  margin: 3rem 8rem;
   box-shadow: 0 0 15px 2px;
 }
 
 @media (max-width: 40em) {
   .pink-container {
-    margin: 3rem 1rem 2rem 1rem;
+    margin: 3rem 1rem;
   }
 }
 
@@ -81,7 +81,7 @@ svg {
 /* Option list */
 
 .option-list {
-  margin: 5rem 0;
+  margin: 3rem 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -98,7 +98,7 @@ svg {
   border-radius: 50% 20% / 10% 40%;
 
   padding: 2rem;
-  margin-left: 1rem;
+  margin: 2rem;
 }
 
 .selected-answer {
@@ -109,7 +109,7 @@ svg {
 
 @media (max-width: 40em) {
   .answer {
-    margin-bottom: 2rem;
+    margin: 2rem 1rem;
   }
 }
 
