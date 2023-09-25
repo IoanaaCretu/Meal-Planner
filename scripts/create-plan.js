@@ -1,5 +1,7 @@
 const continueButton = document.querySelector(".continue-btn");
 const questionElement = document.querySelector(".js-question");
+const subheadingElement = document.querySelector(".js-subheading");
+const contentElement = document.querySelector(".js-content");
 const answerButtonsElement = document.querySelector(".option-list");
 const warningMessage = document.querySelector(".warning-message");
 
@@ -73,11 +75,42 @@ function displayNextQuestion() {
 
 function showQuestion(question) {
   questionElement.innerText = question.question;
+  if (question.subheading) {
+    subheadingElement.innerText = question.subheading;
+  }
+
+  if (question.customHtml) {
+    answerButtonsElement.remove();
+    contentElement.innerHTML += question.customHtml;
+    addScrollableItems();
+  }
   question.answers.forEach((answer) => {
     const button = document.createElement("button");
     button.innerText = answer;
     button.classList.add("answer");
     answerButtonsElement.appendChild(button);
+  });
+}
+
+function addScrollableItems() {
+  const scrollableContainers = document.querySelectorAll(
+    ".scrollable-container"
+  );
+  const scroollableItemHTML = `
+    <div class="scrollable-item">
+    <img
+      src="meals-images/122640984_199255658526227_6899288316658324600_o.jpg"
+      alt=""
+    />
+    <div class="meal-title">Lorem ipsum dolor sit amet.</div>
+    </div>
+  `;
+  const numScrollableItems = userAnswers.length;
+  scrollableContainers.forEach((container) => {
+    container.innerHTML = "";
+    for (let i = 0; i < numScrollableItems; i++) {
+      container.innerHTML += scroollableItemHTML;
+    }
   });
 }
 
@@ -96,7 +129,16 @@ const questions = [
     answers: ["Sure, that would be helpful!", "I'll handle that on my own!."],
   },
 
-  /*  {
+  {
     question: "Here are the recipes I've thoughtfully selected for you.",
-  }, */
+    subheading:
+      "If there are any recipes you're not in the mood for right now, simply click on the upper right corner, and I'll provide another option.",
+    customHtml: `
+      <div class="grid-container ">
+        <div class="scrollable-container"></div>
+        <div class="scrollable-container"></div>
+        <div class="scrollable-container"></div>
+      </div>
+    `,
+  },
 ];
