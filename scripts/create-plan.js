@@ -102,20 +102,22 @@ function addScrollableItems() {
   const scrollableContainers = document.querySelectorAll(
     ".scrollable-container"
   );
-  const scroollableItemHTML = `
-    <div class="scrollable-item">
+  const scroollableItemHTML = `    
     <img
-      src="meals-images/122640984_199255658526227_6899288316658324600_o.jpg"
+      src="https://images.pexels.com/photos/2635307/pexels-photo-2635307.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
       alt=""
     />
     <div class="meal-title">Lorem ipsum dolor sit amet.</div>
-    </div>
   `;
   const numScrollableItems = userAnswers.length;
   scrollableContainers.forEach((container) => {
     container.innerHTML = "";
     for (let i = 0; i < numScrollableItems; i++) {
-      container.innerHTML += scroollableItemHTML;
+      const itemId = `${i + 1}`;
+      container.innerHTML += `
+        <div class="scrollable-item" id="${itemId}">${scroollableItemHTML}
+        </div>
+      `;
     }
   });
 }
@@ -142,11 +144,63 @@ const questions = [
       "If there are any recipes you're not in the mood for right now, simply click on the upper right corner, and I'll provide another option.",
     customHtml: `
     <div class="grid-container ">
-    <div class="scrollable-container"></div>
-    <div class="scrollable-container"></div>
-    <div class="scrollable-container"></div>
+    <div class="scrollable-container breakfast"></div>
+    <div class="scrollable-container lunch"></div>
+    <div class="scrollable-container dinner"></div>
     </div>
     `,
     buttonText: "Continue",
   },
 ];
+
+//TEST GOOGLE SHEETS
+
+// Shuffle the arrays randomly
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
+
+// Function to filter the recipes
+function filterRecipes(array) {
+  const breakfastRecipes = array.filter(
+    (recipe) => recipe.type === "Breakfast"
+  );
+  const lunchRecipes = array.filter((recipe) => recipe.type === "Lunch");
+  const dinnerRecipes = array.filter((recipe) => recipe.type === "Dinner");
+
+  shuffleArray(breakfastRecipes);
+  shuffleArray(lunchRecipes);
+  shuffleArray(dinnerRecipes);
+
+  // Select the first 7 items from each shuffled array
+  const selectedRecipes = [
+    ...breakfastRecipes.slice(0, 7),
+    ...lunchRecipes.slice(0, 7),
+    ...dinnerRecipes.slice(0, 7),
+  ];
+
+  return selectedRecipes;
+}
+
+const meatTitle = document.querySelector(".meal-title");
+
+const url =
+  "https://script.google.com/macros/s/AKfycbw2xftG_JPmL4iZsBjFrqkMVgk3zfohDQOSOaNVlrvlDal6GWBUvw13dVuk8YqIKAy3LQ/exec";
+fetch(url)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .then((data) => {
+    const dataObject = data;
+    const dataArray = dataObject.data;
+    console.log(filterRecipes(dataArray));
+  })
+  .catch((error) => {
+    console.error("There was a problem with the fetch operation:", error);
+  });
