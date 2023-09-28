@@ -120,6 +120,7 @@ function addScrollableItems() {
       `;
     }
   });
+  fetchData();
 }
 
 // function to reset the answer buttons
@@ -164,6 +165,7 @@ function shuffleArray(array) {
 }
 
 // Function to filter the recipes
+
 function filterRecipes(array) {
   const breakfastRecipes = array.filter(
     (recipe) => recipe.type === "Breakfast"
@@ -177,30 +179,64 @@ function filterRecipes(array) {
 
   // Select the first 7 items from each shuffled array
   const selectedRecipes = [
-    ...breakfastRecipes.slice(0, 7),
-    ...lunchRecipes.slice(0, 7),
-    ...dinnerRecipes.slice(0, 7),
+    ...breakfastRecipes.slice(0, userAnswers.length),
+    ...lunchRecipes.slice(0, userAnswers.length),
+    ...dinnerRecipes.slice(0, userAnswers.length),
   ];
 
   return selectedRecipes;
 }
 
-const meatTitle = document.querySelector(".meal-title");
+/* function displayData() {
+  const scrollableItems = document.querySelectorAll('scrollable-item');
+  scrollableItems.forEach(item => {
 
-const url =
-  "https://script.google.com/macros/s/AKfycbw2xftG_JPmL4iZsBjFrqkMVgk3zfohDQOSOaNVlrvlDal6GWBUvw13dVuk8YqIKAy3LQ/exec";
-fetch(url)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
-    return response.json();
   })
-  .then((data) => {
-    const dataObject = data;
-    const dataArray = dataObject.data;
-    console.log(filterRecipes(dataArray));
-  })
-  .catch((error) => {
-    console.error("There was a problem with the fetch operation:", error);
-  });
+} */
+
+//function to fetch data
+
+function fetchData() {
+  /*  if (userAnswers.length === 0) {
+    // User answers not ready yet, delay fetching
+    setTimeout(fetchData, 1000); // Retry after 1 second (adjust the delay as needed)
+    return;
+  } */
+
+  const url =
+    "https://script.google.com/macros/s/AKfycbw2xftG_JPmL4iZsBjFrqkMVgk3zfohDQOSOaNVlrvlDal6GWBUvw13dVuk8YqIKAy3LQ/exec";
+  fetch(url)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      const dataObject = data;
+      const dataArray = dataObject.data;
+      const selectedRecipes = filterRecipes(dataArray);
+
+      const scrollableItems = document.querySelectorAll(".scrollable-item");
+
+      selectedRecipes.forEach((recipe, index) => {
+        const itemId = index + 1;
+        const scrollableItem = scrollableItems[itemId - 1]; // Get the corresponding scrollable item
+        if (scrollableItem) {
+          // Check if the scrollable item exists
+          const image = scrollableItem.querySelector("img");
+          const mealTitle = scrollableItem.querySelector(".meal-title");
+
+          if (image) {
+            image.src = recipe.image; // Update the image source
+          }
+          if (mealTitle) {
+            mealTitle.innerText = recipe.title; // Update the meal title
+          }
+        }
+      });
+    })
+    .catch((error) => {
+      console.error("There was a problem with the fetch operation:", error);
+    });
+}
