@@ -104,10 +104,10 @@ function addScrollableItems() {
   );
   const scroollableItemHTML = `    
     <img
-      src="https://images.pexels.com/photos/2635307/pexels-photo-2635307.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+      src=""
       alt=""
     />
-    <div class="meal-title">Lorem ipsum dolor sit amet.</div>
+    <div class="meal-title"></div>
   `;
   const numScrollableItems = userAnswers.length;
   scrollableContainers.forEach((container) => {
