@@ -4,6 +4,10 @@ const subheadingElement = document.querySelector(".js-subheading");
 const contentElement = document.querySelector(".js-content");
 const answerButtonsElement = document.querySelector(".option-list");
 const warningMessage = document.querySelector(".warning-message");
+const loadingIndicator = document.getElementById("overlay");
+const footer = document.querySelector("footer");
+const mainContent = document.querySelector("main");
+console.log(mainContent);
 
 const userAnswers = { length: 0, list: false };
 let currentQuestionIndex = 0;
@@ -187,21 +191,12 @@ function filterRecipes(array) {
   return selectedRecipes;
 }
 
-/* function displayData() {
-  const scrollableItems = document.querySelectorAll('scrollable-item');
-  scrollableItems.forEach(item => {
-
-  })
-} */
-
 //function to fetch data
 
 function fetchData() {
-  /*  if (userAnswers.length === 0) {
-    // User answers not ready yet, delay fetching
-    setTimeout(fetchData, 1000); // Retry after 1 second (adjust the delay as needed)
-    return;
-  } */
+  loadingIndicator.classList.remove("hidden");
+  footer.classList.add("hidden");
+  mainContent.classList.add("hidden");
 
   const url =
     "https://script.google.com/macros/s/AKfycbw2xftG_JPmL4iZsBjFrqkMVgk3zfohDQOSOaNVlrvlDal6GWBUvw13dVuk8YqIKAy3LQ/exec";
@@ -235,6 +230,12 @@ function fetchData() {
           }
         }
       });
+
+      setTimeout(() => {
+        loadingIndicator.classList.add("hidden");
+        footer.classList.remove("hidden");
+        mainContent.classList.remove("hidden");
+      }, 3000);
     })
     .catch((error) => {
       console.error("There was a problem with the fetch operation:", error);

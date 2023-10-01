@@ -39,7 +39,6 @@ html:focus-within {
 html,
 body {
   min-height: 100%;
-  overflow: hidden;
   font-family: var(--ff-primary);
   text-rendering: optimizeSpeed;
   line-height: 1.5;
