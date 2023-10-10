@@ -116,7 +116,7 @@ const questions = [
   {
     question: "Here are the recipes I've thoughtfully selected for you.",
     subheading:
-      "If there are any recipes you're not in the mood for right now, simply click on the upper right corner, and I'll provide another option.",
+      "If there are any recipes you're not in the mood for right now, simply click on the recipe card and I'll provide another option.",
     customHtml: `
     <div class="grid-container ">
     <div class="scrollable-container"></div>
@@ -140,6 +140,9 @@ function addScrollableItems() {
       src=""
     />
     <div class="meal-title"></div>
+    <span class="material-symbols-outlined refresh-icon">
+      autorenew
+    </span>
   `;
 
   const numScrollableItems = userAnswers.length;

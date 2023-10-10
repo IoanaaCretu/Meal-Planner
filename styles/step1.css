@@ -190,6 +190,8 @@ svg {
 
   overflow: hidden;
   position: relative;
+
+  cursor: pointer;
 }
 
 .scrollable-item > img {
@@ -224,6 +226,30 @@ svg {
   .scrollable-item > img {
     aspect-ratio: 19 / 15;
   }
+}
+
+.scrollable-container .scrollable-item .refresh-icon {
+  display: none;
+}
+
+.scrollable-container .scrollable-item:hover .meal-title {
+  display: none;
+}
+
+.scrollable-container .scrollable-item:hover .refresh-icon {
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: var(--clr-accent-300);
+  border-radius: var(--border-radius);
+  color: var(--clr-neutral-900);
+
+  font-size: 2rem;
+  padding: 0.5rem;
+  opacity: 0.75;
 }
 
 /* Footer Styles */
