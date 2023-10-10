@@ -7,7 +7,6 @@ const warningMessage = document.querySelector(".warning-message");
 const loadingIndicator = document.getElementById("overlay");
 const footer = document.querySelector("footer");
 const mainContent = document.querySelector("main");
-console.log(mainContent);
 
 const userAnswers = { length: 0, list: false };
 let currentQuestionIndex = 0;
@@ -47,11 +46,9 @@ continueButton.addEventListener("click", () => {
       ? warningMessage.classList.add("hidden")
       : warningMessage.classList.remove("hidden");
   }
-
-  console.log(userAnswers);
 });
 
-//event listener for answer buttons
+//event listener for answer buttons to ensure only one button is selected a time and changing their styles when selected
 
 answerButtonsElement.addEventListener("click", (event) => {
   if (event.target && event.target.matches("button")) {
@@ -71,6 +68,14 @@ function displayNextQuestion() {
 
   showQuestion(questions[currentQuestionIndex]);
   currentQuestionIndex++;
+}
+
+// function to reset the answer buttons
+
+function resetState() {
+  while (answerButtonsElement.firstChild) {
+    answerButtonsElement.removeChild(answerButtonsElement.firstChild);
+  }
 }
 
 // function to set HTML for the next question
@@ -100,41 +105,6 @@ function showQuestion(question) {
   }
 }
 
-// function to add scrollable items
-
-function addScrollableItems() {
-  const scrollableContainers = document.querySelectorAll(
-    ".scrollable-container"
-  );
-  const scroollableItemHTML = `    
-    <img
-      src=""
-      alt=""
-    />
-    <div class="meal-title"></div>
-  `;
-  const numScrollableItems = userAnswers.length;
-  scrollableContainers.forEach((container) => {
-    container.innerHTML = "";
-    for (let i = 0; i < numScrollableItems; i++) {
-      const itemId = `${i + 1}`;
-      container.innerHTML += `
-        <div class="scrollable-item" id="${itemId}">${scroollableItemHTML}
-        </div>
-      `;
-    }
-  });
-  fetchData();
-}
-
-// function to reset the answer buttons
-
-function resetState() {
-  while (answerButtonsElement.firstChild) {
-    answerButtonsElement.removeChild(answerButtonsElement.firstChild);
-  }
-}
-
 const questions = [
   {
     question:
@@ -149,16 +119,44 @@ const questions = [
       "If there are any recipes you're not in the mood for right now, simply click on the upper right corner, and I'll provide another option.",
     customHtml: `
     <div class="grid-container ">
-    <div class="scrollable-container breakfast"></div>
-    <div class="scrollable-container lunch"></div>
-    <div class="scrollable-container dinner"></div>
+    <div class="scrollable-container"></div>
+    <div class="scrollable-container"></div>
+    <div class="scrollable-container"></div>
     </div>
     `,
     buttonText: "Continue",
   },
 ];
 
-//TEST GOOGLE SHEETS
+// function to add scrollable items
+
+function addScrollableItems() {
+  const scrollableContainers = document.querySelectorAll(
+    ".scrollable-container"
+  );
+
+  const scroollableItemHTML = `    
+    <img
+      src=""
+    />
+    <div class="meal-title"></div>
+  `;
+
+  const numScrollableItems = userAnswers.length;
+  scrollableContainers.forEach((container) => {
+    container.innerHTML = "";
+    for (let i = 0; i < numScrollableItems; i++) {
+      container.innerHTML += `
+        <div class="scrollable-item" >${scroollableItemHTML}
+        </div>
+      `;
+    }
+  });
+
+  fetchData();
+}
+
+//DATA FETCH
 
 // Shuffle the arrays randomly
 function shuffleArray(array) {
@@ -191,6 +189,41 @@ function filterRecipes(array) {
   return selectedRecipes;
 }
 
+// function to select a random recipes with a certain data-meal-type in order to use it when the user wants to change one of the recipes
+
+function getRandomObjectByType(array, type) {
+  // Filter the array to get objects with matching type
+  const matchingObjects = array.filter((obj) => obj.type === type);
+
+  // Check if there are matching objects
+  if (matchingObjects.length === 0) {
+    return null; // No matching objects found
+  }
+
+  // Generate a random index within the filtered array
+  const randomIndex = Math.floor(Math.random() * matchingObjects.length);
+
+  // Return the random object
+  return matchingObjects[randomIndex];
+}
+
+// function to update the recipe
+
+function updateScrollableItemValues(scrollableItem, recipe) {
+  if (scrollableItem) {
+    const image = scrollableItem.querySelector("img");
+    const mealTitle = scrollableItem.querySelector(".meal-title");
+
+    if (image) {
+      image.src = recipe.image; // Update the image source
+    }
+
+    if (mealTitle) {
+      mealTitle.innerText = recipe.title; // Update the meal title
+    }
+  }
+}
+
 //function to fetch data
 
 function fetchData() {
@@ -215,28 +248,30 @@ function fetchData() {
       const scrollableItems = document.querySelectorAll(".scrollable-item");
 
       selectedRecipes.forEach((recipe, index) => {
-        const itemId = index + 1;
-        const scrollableItem = scrollableItems[itemId - 1]; // Get the corresponding scrollable item
-        if (scrollableItem) {
-          // Check if the scrollable item exists
-          const image = scrollableItem.querySelector("img");
-          const mealTitle = scrollableItem.querySelector(".meal-title");
+        const scrollableItem = scrollableItems[index]; // Get the corresponding scrollable item
 
-          if (image) {
-            image.src = recipe.image; // Update the image source
-          }
-          if (mealTitle) {
-            mealTitle.innerText = recipe.title; // Update the meal title
-          }
-        }
+        scrollableItem.dataset.mealType = recipe.type;
+
+        updateScrollableItemValues(scrollableItem, recipe);
+      });
+
+      scrollableItems.forEach((scrollableItem) => {
+        scrollableItem.addEventListener("click", () => {
+          const mealType = scrollableItem.getAttribute("data-meal-type");
+
+          const newRecipe = getRandomObjectByType(dataArray, mealType);
+
+          updateScrollableItemValues(scrollableItem, newRecipe);
+        });
       });
 
       setTimeout(() => {
         loadingIndicator.classList.add("hidden");
         footer.classList.remove("hidden");
         mainContent.classList.remove("hidden");
-      }, 3000);
+      }, 2500);
     })
+
     .catch((error) => {
       console.error("There was a problem with the fetch operation:", error);
     });
