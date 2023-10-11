@@ -124,7 +124,7 @@ const questions = [
     <div class="scrollable-container"></div>
     </div>
     `,
-    buttonText: "Continue",
+    buttonText: "Discover your personalized menu",
   },
 ];
 
@@ -246,14 +246,15 @@ function fetchData() {
     .then((data) => {
       const dataObject = data;
       const dataArray = dataObject.data;
-      const selectedRecipes = filterRecipes(dataArray);
+      let selectedRecipes = filterRecipes(dataArray);
 
       const scrollableItems = document.querySelectorAll(".scrollable-item");
 
       selectedRecipes.forEach((recipe, index) => {
-        const scrollableItem = scrollableItems[index]; // Get the corresponding scrollable item
+        const scrollableItem = scrollableItems[index];
 
         scrollableItem.dataset.mealType = recipe.type;
+        scrollableItem.dataset.recipeIndex = index;
 
         updateScrollableItemValues(scrollableItem, recipe);
       });
@@ -263,6 +264,8 @@ function fetchData() {
           const mealType = scrollableItem.getAttribute("data-meal-type");
 
           const newRecipe = getRandomObjectByType(dataArray, mealType);
+          const currentIndex = scrollableItem.dataset.recipeIndex;
+          selectedRecipes.splice(currentIndex, 1, newRecipe);
 
           updateScrollableItemValues(scrollableItem, newRecipe);
         });
@@ -279,3 +282,10 @@ function fetchData() {
       console.error("There was a problem with the fetch operation:", error);
     });
 }
+
+/* setting the ingredients list, need to do it when the user clicks on the next step so it sets the correct list
+
+
+const ingredientsList = [
+  ...new Set(selectedRecipes.flatMap((obj) => obj.ingredients)),
+]; */
