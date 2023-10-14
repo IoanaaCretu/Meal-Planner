@@ -271,11 +271,19 @@ function fetchData() {
         });
       });
 
+      continueButton.addEventListener("click", () => {
+        const content = document.getElementById("container");
+        const menuElement = document.querySelector(".meal-plan-container");
+        content.classList.add("hidden");
+        menuElement.classList.remove("hidden");
+      });
+
       setTimeout(() => {
         loadingIndicator.classList.add("hidden");
         footer.classList.remove("hidden");
         mainContent.classList.remove("hidden");
-      }, 2500);
+      }, 0);
+      console.log(selectedRecipes);
     })
 
     .catch((error) => {
@@ -284,8 +292,8 @@ function fetchData() {
 }
 
 /* setting the ingredients list, need to do it when the user clicks on the next step so it sets the correct list
-
-
-const ingredientsList = [
-  ...new Set(selectedRecipes.flatMap((obj) => obj.ingredients)),
-]; */
+  
+  
+  const ingredientsList = [
+    ...new Set(selectedRecipes.flatMap((obj) => obj.ingredients)),
+  ]; */
