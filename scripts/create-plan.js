@@ -282,7 +282,7 @@ function fetchData() {
         loadingIndicator.classList.add("hidden");
         footer.classList.remove("hidden");
         mainContent.classList.remove("hidden");
-      }, 0);
+      }, 2000);
       console.log(selectedRecipes);
     })
 
@@ -292,8 +292,24 @@ function fetchData() {
 }
 
 /* setting the ingredients list, need to do it when the user clicks on the next step so it sets the correct list
-  
-  
-  const ingredientsList = [
-    ...new Set(selectedRecipes.flatMap((obj) => obj.ingredients)),
-  ]; */
+
+
+const ingredientsList = [
+  ...new Set(selectedRecipes.flatMap((obj) => obj.ingredients)),
+]; */
+
+document
+  .querySelector(".save-as-picture")
+  .addEventListener("click", function () {
+    // Convert the menu container to an image (assuming you have it with an id 'menu-container')
+    html2canvas(document.querySelector(".meal-plan")).then(function (canvas) {
+      // Convert canvas to data URL
+      const dataURL = canvas.toDataURL("image/png");
+
+      // Create a link element to trigger the download
+      const downloadLink = document.createElement("a");
+      downloadLink.href = dataURL;
+      downloadLink.download = "meal-plan.png"; // Filename for the downloaded image
+      downloadLink.click();
+    });
+  });

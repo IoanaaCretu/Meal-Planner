@@ -72,9 +72,15 @@ body {
   box-shadow: 0 0 15px 2px;
 }
 
-@media (max-width: 40em) {
+@media (max-width: 750px) {
   .pink-container {
     margin: 3rem 1rem;
+  }
+}
+
+@media (max-width: 300px) {
+  .pink-container {
+    padding: 3rem 0.2rem;
   }
 }
 
