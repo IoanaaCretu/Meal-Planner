@@ -179,6 +179,27 @@ body {
   overscroll-behavior-inline: contain;
 }
 
+.scrollable-container::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+.scrollable-container::-webkit-scrollbar-thumb {
+  background: var(--clr-accent-100);
+  border: 2px solid hsla(12, 42%, 60%, 0.48);
+  border-radius: var(--border-radius);
+}
+
+.scrollable-container::-webkit-scrollbar-thumb:hover {
+  background: var(--clr-accent-300);
+  border-radius: var(--border-radius);
+}
+
+.scrollable-container::-webkit-scrollbar-track {
+  margin-block: 1.5em;
+  background: hsla(12, 42%, 60%, 0.56);
+  border-radius: var(--border-radius);
+}
+
 @media (max-width: 57em) {
   .grid-container {
     padding: 0.5rem;
@@ -239,7 +260,7 @@ body {
   transform: translate(-50%, -50%);
 }
 
-@media (max-width: 50em) {
+@media (max-width: 57em) {
   .scrollable-item {
     min-width: 150px;
   }

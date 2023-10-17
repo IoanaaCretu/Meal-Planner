@@ -274,8 +274,11 @@ function fetchData() {
       continueButton.addEventListener("click", () => {
         const content = document.getElementById("container");
         const menuElement = document.querySelector(".meal-plan-container");
+
         content.classList.add("hidden");
         menuElement.classList.remove("hidden");
+
+        insertRecipes(selectedRecipes);
       });
 
       setTimeout(() => {
@@ -283,7 +286,6 @@ function fetchData() {
         footer.classList.remove("hidden");
         mainContent.classList.remove("hidden");
       }, 2000);
-      console.log(selectedRecipes);
     })
 
     .catch((error) => {
@@ -291,12 +293,55 @@ function fetchData() {
     });
 }
 
-/* setting the ingredients list, need to do it when the user clicks on the next step so it sets the correct list
+function insertRecipes(array) {
+  const daysContainer = document.querySelector(".days-container");
+  const shoppingListContainer = document.querySelector(
+    ".shopping-list-container"
+  );
+  const shoppingList = document.querySelector(".shopping-list-items");
 
+  // Clear any previous content in the containers
+  daysContainer.innerHTML = "";
+  shoppingList.innerHTML = "";
 
-const ingredientsList = [
-  ...new Set(selectedRecipes.flatMap((obj) => obj.ingredients)),
-]; */
+  if (array.length === 21) {
+    for (let i = 0; i < userAnswers.length; i++) {
+      daysContainer.innerHTML += `<div class="day">
+      <h5 class="day-name">Day ${i + 1}</h5>
+      <ul class="meals">
+        <li>${array[i].title}</li>
+        <li>${array[i + 7].title}</li>
+        <li>${array[i + 14].title}</li>
+      </ul>
+    </div>`;
+    }
+  } else if (array.length === 3) {
+    daysContainer.innerHTML += `<div class="day">
+      <h5 class="day-name">TODAY</h5>
+      <ul class="meals">
+        <li>${array[0].title}</li>
+        <li>${array[1].title}</li>
+        <li>${array[2].title}</li>
+      </ul>
+    </div>`;
+  }
+
+  if (userAnswers.list === true) {
+    const ingredientsList = [
+      ...new Set(array.flatMap((obj) => obj.ingredients)),
+    ];
+
+    for (let i = 0; i < ingredientsList.length; i++) {
+      shoppingList.innerHTML += `<li class="list-item">${ingredientsList[i]}</li>`;
+    }
+
+    // Make the shopping list container visible
+    shoppingListContainer.classList.remove("hidden");
+  } else {
+    // Hide the shopping list container
+    shoppingListContainer.classList.add("hidden");
+  }
+}
 
 document
   .querySelector(".save-as-picture")
@@ -313,3 +358,7 @@ document
       downloadLink.click();
     });
   });
+
+document
+  .querySelector(".save-as-favorite")
+  .addEventListener("click", () => (window.location.href = "favorites.html"));
