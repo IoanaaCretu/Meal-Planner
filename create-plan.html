@@ -3,49 +3,133 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>It's my meal planner | Create plan</title>
-    <link rel="stylesheet" href="styles/plan-style.css" />
+    <title>It's my meal planner | Home</title>
+    <link rel="stylesheet" href="styles/meal-plan.css" />
+    <link rel="stylesheet" href="styles/create-plan.css" />
+    <link rel="stylesheet" href="styles/overlay.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
     />
+    <script defer src="scripts/create-plan.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.2.2/html2canvas.min.js"></script>
   </head>
   <body>
-    <header class="primary-header">
-      <div class="container">
-        <div class="nav-wrapper">
-          <a href="#"><img src="images/logo.svg" alt="Logo" class="logo" /></a>
-          <button
-            class="mobile-nav-toggle"
-            aria-controls="primary-navigation"
-            aria-expanded="false"
-          >
-            <span class="visually-hidden">Menu</span>
-          </button>
-          <nav class="primary-navigation" id="primary-navigation">
-            <ul aria-label="Primary" role="list" class="nav-list">
-              <li><a href="index.html">About</a></li>
-              <li><a href="create-plan.html">Create plan</a></li>
-              <li><a href="favorites.html">Favorites</a></li>
-            </ul>
-          </nav>
+    <div id="overlay" class="hidden">
+      <!-- Waiting scene -->
+      <h1>Cooking in progress..</h1>
+      <div id="cooking">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+      </div>
+    </div>
+    <main>
+      <div id="container">
+        <div class="warning-message hidden">
+          <p class="fw-regular fs-600">Please select one option</p>
+        </div>
+        <div class="pink-container">
+          <div class="question">
+            <h4 class="js-question | fw-bold fs-700">
+              How far ahead do you want to plan?
+            </h4>
+            <p class="js-subheading | fw-regular fs-600"></p>
+          </div>
+          <div class="option-list">
+            <button class="answer">Just for today...</button>
+            <button class="answer">The whole week</button>
+          </div>
+          <div class="js-content"></div>
+          <div class="button">
+            <button class="continue-btn btn | fw-semi-bold fs-600">
+              Continue
+            </button>
+          </div>
         </div>
       </div>
-    </header>
-    <main></main>
-    <footer></footer>
-    <script>
-      const primaryHeader = document.querySelector(".primary-header");
-      const navToggle = document.querySelector(".mobile-nav-toggle");
-      const primaryNav = document.querySelector(".primary-navigation");
 
-      navToggle.addEventListener("click", () => {
-        primaryNav.hasAttribute("data-visible")
-          ? navToggle.setAttribute("aria-expanded", false)
-          : navToggle.setAttribute("aria-expanded", true);
-        primaryNav.toggleAttribute("data-visible");
-        primaryHeader.toggleAttribute("data-overlay");
-      });
-    </script>
+      <!--MEAL PLAN-->
+
+      <div class="meal-plan-container pink-container hidden">
+        <div class="question">
+          <h4 class="fw-bold fs-700">
+            You are all set now. Enjoy your meal plan!
+          </h4>
+          <p>Save it for later, as a picture or in the favorites section:</p>
+          <div class="buttons">
+            <button class="btn save-as-favorite">Save as Favorite</button>
+            <button class="btn save-as-picture">Save as Picture</button>
+          </div>
+        </div>
+        <div class="meal-plan">
+          <div class="title">
+            <h2>WEEKLY MEAL PLAN</h2>
+          </div>
+          <div class="days-container"></div>
+          <div class="shopping-list-container">
+            <h3>Shopping list</h3>
+            <ul class="shopping-list-items"></ul>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer class="primary-footer">
+      <div id="container">
+        <div class="primary-footer__wrapper">
+          <a class="primary-footer__logo" href="index.html"
+            ><img class="pink-logo" src="images/pink-logo.svg" alt="logo"
+          /></a>
+
+          <ul class="social-list" role="list" aria-label="Social links">
+            <li>
+              <a aria-label="github" href="https://github.com/IoanaaCretu">
+                <svg class="social-icon">
+                  <use xlink:href="images/social-icons.svg#icon-github"></use>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                aria-label="linkedin"
+                href="https://www.linkedin.com/in/ioana-cretu-a660a028b/"
+              >
+                <svg class="social-icon">
+                  <use xlink:href="images/social-icons.svg#icon-linkedin"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+          <div class="primary-footer__nav-wrapper">
+            <nav class="footer-nav">
+              <ul
+                class="flow"
+                style="--flow-spacer: 1em"
+                aria-label="Footer"
+                role="list"
+              >
+                <li><a href="index.html">Home page</a></li>
+                <li><a href="favorites.html">Favorites</a></li>
+              </ul>
+            </nav>
+          </div>
+          <a class="primary-footer__scroller scroller" href="#"
+            ><span class="material-symbols-outlined"> arrow_upward </span></a
+          >
+          <p class="primary-footer__copyright">
+            Copyright 2023. All Rights Reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

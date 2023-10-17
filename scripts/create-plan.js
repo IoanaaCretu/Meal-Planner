@@ -362,3 +362,11 @@ document
 document
   .querySelector(".save-as-favorite")
   .addEventListener("click", () => (window.location.href = "favorites.html"));
+
+const shoppingListItems = document.querySelectorAll(".list-item");
+
+shoppingListItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    item.style.textDecoration = "line-through";
+  });
+});

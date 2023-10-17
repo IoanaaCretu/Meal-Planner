@@ -347,7 +347,7 @@ body {
 @media (min-width: 47em) {
   .primary-footer__wrapper {
     grid-template-areas: "logo nav scroller" "social nav copyright";
-    grid-template-columns: min-content 1fr auto;
+    grid-template-columns: max-content 1fr auto;
   }
 
   .primary-footer__copyright {

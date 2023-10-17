@@ -21,6 +21,7 @@
   background: #fff;
   padding: 2%;
   margin-top: 5%;
+  min-width: 70%;
 }
 
 .days-container {
@@ -38,12 +39,16 @@
   margin-bottom: 5px;
   padding: 0.5em;
   background: #fff;
-  border: 1px solid hsl(12, 42%, 60%);
+  border: 2px solid hsl(12, 42%, 60%);
 }
 
 @media (max-width: 480px) {
   .day {
     min-width: calc(50% - 5px);
+  }
+
+  .meal-plan {
+    width: 100%;
   }
 }
 
@@ -65,7 +70,7 @@
   font-weight: 600;
   background: hsl(12, 42%, 60%);
   color: #fff;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #000;
 }
 
 .meals li {
@@ -83,7 +88,7 @@
     flex-direction: column;
   }
 
-  .save-favorite {
+  .save-as-favorite {
     margin-bottom: 10px;
   }
 }
@@ -93,8 +98,7 @@
 .shopping-list-container {
   background: #fff;
   padding: 10px;
-  border: 1px solid hsl(12, 42%, 60%);
-  list-style-type: disc !important;
+  border: 2px solid hsl(12, 42%, 60%);
 }
 
 h3 {
@@ -111,15 +115,4 @@ h3 {
 .shopping-list-items {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  grid-auto-rows: minmax(50px, 1fr);
-  grid-auto-columns: auto;
-  grid-gap: 2px;
-  padding: 0;
-
-  list-style: circle !important;
-}
-
-.list-item {
-  padding: 0;
-  text-align: left;
 }
