@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>It's my meal planner | Favorites</title>
     <link rel="stylesheet" href="styles/favorites-style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
@@ -32,7 +37,38 @@
         </div>
       </div>
     </header>
-    <main></main>
+    <main>
+      <div class="title">
+        <h1>HERE YOU CAN FIND YOUR MOST BELOVED MEAL PLANS</h1>
+        <h4>Easily click on them to download, delete and more.</h4>
+      </div>
+      <div class="hs-wrap">
+        <img
+          src="images/arrow_back_ios_FILL0_wght400_GRAD0_opsz24.svg"
+          alt=""
+          id="backBtn"
+        />
+        <div class="hs-container">
+          <div>
+            <span><img src="images/meniu.png" alt="" /></span>
+            <span><img src="images/meal-plan (2).png" alt="" /></span>
+          </div>
+          <div>
+            <span><img src="images/meal-plan.png" alt="" /></span>
+            <span><img src="images/meniu.png" alt="" /></span>
+          </div>
+          <div>
+            <span><img src="images/meniu.png" alt="" /></span>
+            <span><img src="images/meal-plan (1).png" alt="" /></span>
+          </div>
+        </div>
+        <img
+          src="images/arrow_forward_ios_FILL0_wght400_GRAD0_opsz24 (1).svg"
+          alt=""
+          id="nextBtn"
+        />
+      </div>
+    </main>
     <footer></footer>
     <script>
       const primaryHeader = document.querySelector(".primary-header");
@@ -45,6 +81,26 @@
           : navToggle.setAttribute("aria-expanded", true);
         primaryNav.toggleAttribute("data-visible");
         primaryHeader.toggleAttribute("data-overlay");
+      });
+
+      // HORIZONTAL SCROLLBAR
+      const scrollContainer = document.querySelector(".hs-container");
+      const backBtn = document.getElementById("backBtn");
+      const nextBtn = document.getElementById("nextBtn");
+
+      scrollContainer.addEventListener("wheel", (e) => {
+        e.preventDefault();
+        scrollContainer.scrollLeft += e.deltaY;
+        scrollContainer.style.scrollBehavior = "auto";
+      });
+
+      nextBtn.addEventListener("click", () => {
+        scrollContainer.style.scrollBehavior = "smooth";
+        scrollContainer.scrollLeft += 900;
+      });
+      backBtn.addEventListener("click", () => {
+        scrollContainer.style.scrollBehavior = "smooth";
+        scrollContainer.scrollLeft -= 900;
       });
     </script>
   </body>
