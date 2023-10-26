@@ -359,14 +359,26 @@ document
     });
   });
 
-document
-  .querySelector(".save-as-favorite")
-  .addEventListener("click", () => (window.location.href = "favorites.html"));
+document.querySelector(".save-as-favorite").addEventListener("click", () => {
+  const mealPlanDiv = document.querySelector(".meal-plan");
+  if (mealPlanDiv) {
+    html2canvas(mealPlanDiv).then(function (canvas) {
+      // Convert the canvas to a data URL (PNG image)
+      const mealPlanImageURL = canvas.toDataURL("image/png");
 
-const shoppingListItems = document.querySelectorAll(".list-item");
+      // Get the existing saved meal plans from local storage
+      const savedMealPlansJSON =
+        localStorage.getItem("favoriteMealPlans") || "[]";
 
-shoppingListItems.forEach((item) => {
-  item.addEventListener("click", () => {
-    item.style.textDecoration = "line-through";
-  });
+      const savedMealPlans = JSON.parse(savedMealPlansJSON);
+
+      // Add the new meal plan image URL to the array
+      savedMealPlans.push(mealPlanImageURL);
+
+      // Save the updated array back to local storage
+      localStorage.setItem("favoriteMealPlans", JSON.stringify(savedMealPlans));
+    });
+  }
+
+  window.location.href = "/favorites.html";
 });
