@@ -379,6 +379,4 @@ document.querySelector(".save-as-favorite").addEventListener("click", () => {
       localStorage.setItem("favoriteMealPlans", JSON.stringify(savedMealPlans));
     });
   }
-
-  window.location.href = "/favorites.html";
 });
