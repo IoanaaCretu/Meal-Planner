@@ -1,22 +1,3 @@
-/* const scrollingContainer = document.querySelector(".hs-container");
-
-const divsInsideContainer = hsContainer.querySelectorAll("div");
-
-divsInsideContainer.forEach((divElement) => {
-  const spanElements = divElement.querySelectorAll("span");
-
-  if (spanElements.length === 2) {
-    const newDiv = document.createElement("div");
-    newDiv.textContent = "This is a new div";
-    hsContainer.appendChild(newDiv);
-  } else if (spanElements.length <= 1) {
-    const newImg = document.createElement("img");
-    newImg.src = "your_image_source_here";
-    divElement.appendChild(newImg);
-  }
-});
- */
-
 // Step 1: Retrieve the array of image URLs from local storage
 const storedImageURLs = JSON.parse(localStorage.getItem("favoriteMealPlans"));
 
@@ -47,7 +28,7 @@ for (const imageURL of storedImageURLs) {
   imagesInCurrentDiv++;
 
   // If two images have been added to the current div, append it to the container
-  if (imagesInCurrentDiv === 2) {
+  if (imagesInCurrentDiv === 1) {
     container.appendChild(currentDiv);
     imagesInCurrentDiv = 0;
   }

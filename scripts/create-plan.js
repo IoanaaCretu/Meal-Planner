@@ -343,6 +343,8 @@ function insertRecipes(array) {
   }
 }
 
+//SAVE BUTTONS
+
 document
   .querySelector(".save-as-picture")
   .addEventListener("click", function () {
@@ -377,6 +379,8 @@ document.querySelector(".save-as-favorite").addEventListener("click", () => {
 
       // Save the updated array back to local storage
       localStorage.setItem("favoriteMealPlans", JSON.stringify(savedMealPlans));
+
+      window.location.href = "favorites.html";
     });
   }
 });

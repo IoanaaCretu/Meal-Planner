@@ -18,7 +18,7 @@
   </head>
   <body>
     <header class="primary-header">
-      <div class="container">
+      <div class="container" style="--container-padding: 1em">
         <div class="nav-wrapper">
           <a href="#"><img src="images/logo.svg" alt="Logo" class="logo" /></a>
           <button
@@ -30,7 +30,7 @@
           </button>
           <nav class="primary-navigation" id="primary-navigation">
             <ul aria-label="Primary" role="list" class="nav-list">
-              <li><a href="index.html">Home</a></li>
+              <li><a href="index.html">Home page</a></li>
               <li><a href="create-plan.html">Create plan</a></li>
               <li><a href="favorites.html">Favorites</a></li>
             </ul>
@@ -50,20 +50,7 @@
             alt=""
             id="backBtn"
           />
-          <div class="hs-container">
-            <!-- <div>
-              <span><img src="images/meniu.png" alt="" /></span>
-              <span><img src="images/meal-plan (2).png" alt="" /></span>
-            </div>
-            <div>
-              <span><img src="images/meal-plan.png" alt="" /></span>
-              <span><img src="images/meniu.png" alt="" /></span>
-            </div>
-            <div>
-              <span><img src="images/meniu.png" alt="" /></span>
-              <span><img src="images/meal-plan (1).png" alt="" /></span>
-            </div> -->
-          </div>
+          <div class="hs-container"></div>
           <img
             src="images/arrow_forward_ios_FILL0_wght400_GRAD0_opsz24 (1).svg"
             alt=""
@@ -72,7 +59,51 @@
         </div>
       </section>
     </main>
-    <footer></footer>
+    <footer class="primary-footer">
+      <div class="container">
+        <div class="primary-footer__wrapper">
+          <a class="primary-footer__logo" href="index.html"
+            ><img class="pink-logo" src="images/pink-logo.svg" alt="logo"
+          /></a>
+
+          <ul class="social-list" role="list" aria-label="Social links">
+            <li>
+              <a aria-label="github" href="https://github.com/IoanaaCretu">
+                <svg class="social-icon">
+                  <use xlink:href="images/social-icons.svg#icon-github"></use>
+                </svg>
+              </a>
+            </li>
+            <li>
+              <a
+                aria-label="linkedin"
+                href="https://www.linkedin.com/in/ioana-cretu-a660a028b/"
+              >
+                <svg class="social-icon">
+                  <use xlink:href="images/social-icons.svg#icon-linkedin"></use>
+                </svg>
+              </a>
+            </li>
+          </ul>
+          <div class="primary-footer__nav-wrapper">
+            <nav class="footer-nav">
+              <ul aria-label="Footer" role="list">
+                <li style="padding: 1rem 0">
+                  <a href="index.html">Home page</a>
+                </li>
+                <li><a href="create-plan.html">Create plan</a></li>
+              </ul>
+            </nav>
+          </div>
+          <a class="primary-footer__scroller scroller" href="#"
+            ><span class="material-symbols-outlined"> arrow_upward </span></a
+          >
+          <p class="primary-footer__copyright">
+            Copyright 2023. All Rights Reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
     <script>
       const primaryHeader = document.querySelector(".primary-header");
       const navToggle = document.querySelector(".mobile-nav-toggle");
@@ -99,11 +130,11 @@
 
       nextBtn.addEventListener("click", () => {
         scrollContainer.style.scrollBehavior = "smooth";
-        scrollContainer.scrollLeft += 900;
+        scrollContainer.scrollLeft += 700;
       });
       backBtn.addEventListener("click", () => {
         scrollContainer.style.scrollBehavior = "smooth";
-        scrollContainer.scrollLeft -= 900;
+        scrollContainer.scrollLeft -= 700;
       });
     </script>
   </body>
