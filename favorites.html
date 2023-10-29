@@ -14,7 +14,8 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
     />
-    <script defer src="scripts/saving-plan.js"></script>
+    <script defer src="scripts/mobile-nav-toggle.js"></script>
+    <script defer src="scripts/display-saved-plans.js"></script>
   </head>
   <body>
     <header class="primary-header">
@@ -43,6 +44,10 @@
         <div class="title">
           <h1>HERE YOU CAN FIND YOUR MOST BELOVED MEAL PLANS</h1>
           <h4>Easily click on them to download, delete and more.</h4>
+        </div>
+        <div id="no-meal-plans-message">
+          It looks like you haven't saved any meal-plans. Go ahead and start
+          your journey!
         </div>
         <div class="hs-wrap">
           <img
@@ -91,6 +96,7 @@
                 <li style="padding: 1rem 0">
                   <a href="index.html">Home page</a>
                 </li>
+                <br />
                 <li><a href="create-plan.html">Create plan</a></li>
               </ul>
             </nav>
@@ -104,38 +110,5 @@
         </div>
       </div>
     </footer>
-    <script>
-      const primaryHeader = document.querySelector(".primary-header");
-      const navToggle = document.querySelector(".mobile-nav-toggle");
-      const primaryNav = document.querySelector(".primary-navigation");
-
-      navToggle.addEventListener("click", () => {
-        primaryNav.hasAttribute("data-visible")
-          ? navToggle.setAttribute("aria-expanded", false)
-          : navToggle.setAttribute("aria-expanded", true);
-        primaryNav.toggleAttribute("data-visible");
-        primaryHeader.toggleAttribute("data-overlay");
-      });
-
-      // HORIZONTAL SCROLLBAR
-      const scrollContainer = document.querySelector(".hs-container");
-      const backBtn = document.getElementById("backBtn");
-      const nextBtn = document.getElementById("nextBtn");
-
-      scrollContainer.addEventListener("wheel", (e) => {
-        e.preventDefault();
-        scrollContainer.scrollLeft += e.deltaY;
-        scrollContainer.style.scrollBehavior = "auto";
-      });
-
-      nextBtn.addEventListener("click", () => {
-        scrollContainer.style.scrollBehavior = "smooth";
-        scrollContainer.scrollLeft += 700;
-      });
-      backBtn.addEventListener("click", () => {
-        scrollContainer.style.scrollBehavior = "smooth";
-        scrollContainer.scrollLeft -= 700;
-      });
-    </script>
   </body>
 </html>

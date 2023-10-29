@@ -2,6 +2,7 @@
 
 :root {
   --clr-accent-400: hsl(219.09, 78.57%, 67.06%);
+  --clr-accent-200: hsl(12, 41%, 66%);
   --clr-accent-100: hsl(11.71, 100%, 91.96%);
 
   --clr-primary-400: hsl(219.09, 78.57%, 20%);
@@ -204,6 +205,12 @@ p[data-width="wide"] {
   opacity: 80%;
 }
 
+@media (max-width: 47em) {
+  .title h1 {
+    font-size: var(--fs-600);
+  }
+}
+
 /* HORIZONTAL SCROLLER */
 
 .hs-container {
@@ -271,10 +278,30 @@ p[data-width="wide"] {
   transform: scale(1.1);
 }
 
+/* Message when no meal-plans */
+
+#no-meal-plans-message {
+  text-align: center;
+  background: hsla(12, 41%, 66%, 0.526);
+
+  border: 1px solid var(--clr-accent-200);
+  border-radius: 50px;
+
+  margin: var(--size-200) 20% 10rem 20%;
+  padding: 4rem;
+}
+
+@media (max-width: 47em) {
+  #no-meal-plans-message {
+    margin: var(--size-200) 5% 5rem 5%;
+    padding: var(--size-300);
+  }
+}
+
 /* footer */
 
 .primary-footer {
-  background-color: hsl(12, 41%, 66%);
+  background-color: var(--clr-accent-200);
   padding: 0.25rem 0 var(--size-150) 5rem;
 }
 

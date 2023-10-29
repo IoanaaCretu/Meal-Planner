@@ -80,7 +80,7 @@ body {
   box-shadow: 0 0 25px 5px rgba(32, 20, 20, 0.912);
 }
 
-@media (max-width: 750px) {
+@media (max-width: 47em) {
   .pink-container {
     margin: var(--size-300) var(--size-100);
   }
@@ -186,7 +186,7 @@ body {
 }
 
 .scrollable-container::-webkit-scrollbar {
-  width: var;
+  width: var(--size-050);
 }
 
 .scrollable-container::-webkit-scrollbar-thumb {
@@ -208,7 +208,7 @@ body {
 
 @media (max-width: 57em) {
   .grid-container {
-    padding: var;
+    padding: var(--size-050);
     margin: var(--size-300);
     grid-auto-flow: row;
   }
@@ -223,7 +223,7 @@ body {
 
 @media (max-width: 50em) {
   .grid-container {
-    margin: var;
+    margin: var(--size-100);
     gap: var(--size-150);
   }
 }
@@ -233,7 +233,7 @@ body {
 .scrollable-item {
   border: 1px solid black;
   border-radius: var(--border-radius);
-  margin: var;
+  margin: 0.25rem;
 
   overflow: hidden;
   position: relative;
@@ -295,7 +295,7 @@ body {
   color: var(--clr-neutral-900);
 
   font-size: var(--fs-800);
-  padding: var;
+  padding: var(--size-050);
   opacity: 0.75;
 }
 
@@ -436,4 +436,10 @@ body {
 
 .hidden {
   display: none;
+}
+
+/*  on phones the color of buttons was blue, need to find why  ?? */
+
+button {
+  color: black;
 }
