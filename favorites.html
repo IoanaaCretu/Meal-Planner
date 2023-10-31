@@ -14,8 +14,17 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
     />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
     <script defer src="scripts/mobile-nav-toggle.js"></script>
     <script defer src="scripts/display-saved-plans.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.2.2/html2canvas.min.js"></script>
   </head>
   <body>
     <header class="primary-header">
@@ -48,6 +57,14 @@
         <div id="no-meal-plans-message">
           It looks like you haven't saved any meal-plans. Go ahead and start
           your journey!
+        </div>
+        <div class="buttons js-buttons visually-hidden">
+          <button class="delete-btn">
+            <span class="material-symbols-outlined"> delete </span>
+          </button>
+          <button class="download-btn">
+            <span class="material-symbols-outlined"> download </span>
+          </button>
         </div>
         <div class="hs-wrap">
           <img
@@ -96,7 +113,7 @@
                 <li style="padding: 1rem 0">
                   <a href="index.html">Home page</a>
                 </li>
-                <br />
+
                 <li><a href="create-plan.html">Create plan</a></li>
               </ul>
             </nav>

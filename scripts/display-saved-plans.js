@@ -6,13 +6,9 @@ const hsElement = document.querySelector(".hs-wrap");
 const noMealPlansMessage = document.getElementById("no-meal-plans-message");
 
 if (savedMealPlans.length === 0) {
-  // If there are no saved meal plans, display the message
   hsElement.style.display = "none";
 } else {
-  // If there are saved meal plans, you can hide or remove the message element
   noMealPlansMessage.style.display = "none";
-  // or
-  // noMealPlansMessage.remove();
 }
 
 // Step 1: Retrieve the array of image URLs from local storage
@@ -30,7 +26,7 @@ for (const imageURL of storedImageURLs) {
   // Create a new div if the current one is empty or has two images
   if (imagesInCurrentDiv === 0) {
     currentDiv = document.createElement("div");
-    currentDiv.classList.add("js-check-size");
+    currentDiv.classList.add("js-meal-plan");
   }
 
   // Create a span element for the image
@@ -57,12 +53,12 @@ if (currentDiv) {
   container.appendChild(currentDiv);
 }
 
-//BUTTONS BEHAVIOUR
+//SCROLLING BEHAVIOUR
 
 const backBtn = document.getElementById("backBtn");
 const nextBtn = document.getElementById("nextBtn");
 
-const scrollSize = document.querySelector(".js-check-size").offsetWidth;
+const scrollSize = document.querySelector(".js-meal-plan").offsetWidth;
 
 container.addEventListener("wheel", (e) => {
   e.preventDefault();
@@ -73,8 +69,69 @@ container.addEventListener("wheel", (e) => {
 nextBtn.addEventListener("click", () => {
   container.style.scrollBehavior = "smooth";
   container.scrollLeft += scrollSize;
+
+  featureButtons.classList.add("visually-hidden");
 });
 backBtn.addEventListener("click", () => {
   container.style.scrollBehavior = "smooth";
   container.scrollLeft -= scrollSize;
+
+  featureButtons.classList.add("visually-hidden");
+});
+
+// DELETE AND DOWNLOAD BUTTONS
+
+const mealPlans = document.querySelectorAll(".js-meal-plan");
+const featureButtons = document.querySelector(".js-buttons");
+
+let currentMealPlan;
+
+mealPlans.forEach((mealPlan) => {
+  mealPlan.addEventListener("click", () => {
+    featureButtons.classList.remove("visually-hidden");
+    currentMealPlan = mealPlan;
+  });
+});
+
+document.querySelector(".download-btn").addEventListener("click", () => {
+  // Convert the menu container to an image (assuming you have it with an id 'menu-container')
+  html2canvas(currentMealPlan).then(function (canvas) {
+    // Convert canvas to data URL
+    const dataURL = canvas.toDataURL("image/png");
+
+    // Create a link element to trigger the download
+    const downloadLink = document.createElement("a");
+    downloadLink.href = dataURL;
+    downloadLink.download = "meal-plan.png"; // Filename for the downloaded image
+    downloadLink.click();
+  });
+});
+
+document.querySelector(".delete-btn").addEventListener("click", () => {
+  currentMealPlan.parentNode.removeChild(currentMealPlan);
+
+  imgElement = currentMealPlan.querySelector("img");
+  imgSrc = imgElement.getAttribute("src");
+
+  const favoriteMealPlans =
+    JSON.parse(localStorage.getItem("favoriteMealPlans")) || [];
+
+  // Find the index of the item to remove based on imgSrc
+  const indexToRemove = favoriteMealPlans.findIndex((item) => item === imgSrc);
+
+  if (indexToRemove !== -1) {
+    // If the item with imgSrcToDelete is found, remove it
+    favoriteMealPlans.splice(indexToRemove, 1);
+
+    if (favoriteMealPlans.length === 0) {
+      hsElement.style.display = "none";
+      noMealPlansMessage.style.display = "";
+    }
+    noMealPlansMessage.style.display = "none";
+    // Save the updated data back to local storage
+    localStorage.setItem(
+      "favoriteMealPlans",
+      JSON.stringify(favoriteMealPlans)
+    );
+  }
 });

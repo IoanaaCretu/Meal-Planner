@@ -304,6 +304,8 @@ body {
 .primary-footer {
   background-color: var(--clr-accent-300);
   padding: var(--size-150) 4rem;
+
+  margin-top: auto;
 }
 
 .primary-footer__wrapper {
