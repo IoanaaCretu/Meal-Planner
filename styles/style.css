@@ -427,6 +427,8 @@ p[data-width="wide"] {
 @media (max-width: 47em) {
   .hero__image {
     order: 1;
+
+    margin-top: 1rem;
   }
 }
 

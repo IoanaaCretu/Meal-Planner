@@ -122,12 +122,13 @@ document.querySelector(".delete-btn").addEventListener("click", () => {
   if (indexToRemove !== -1) {
     // If the item with imgSrcToDelete is found, remove it
     favoriteMealPlans.splice(indexToRemove, 1);
+    featureButtons.classList.add("visually-hidden");
 
     if (favoriteMealPlans.length === 0) {
       hsElement.style.display = "none";
       noMealPlansMessage.style.display = "";
     }
-    noMealPlansMessage.style.display = "none";
+
     // Save the updated data back to local storage
     localStorage.setItem(
       "favoriteMealPlans",
